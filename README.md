@@ -6,9 +6,9 @@
 ![Example](https://github.com/superyc227/hanzi_spell/blob/main/img/animation.gif?raw=true)
 
 ## 交互操作
-1.单击动画汉字框将重新动画
-2.双击测试汉字框将重新测试
+1. 单击动画汉字框将重新动画
+2. 双击测试汉字框将重新测试
 
 ## Demo
-1.小学语文生字 new.html
-2.唐诗300首 demo/300.html
+1. 小学语文生字 new.html
+2. 唐诗300首 demo/300.html
