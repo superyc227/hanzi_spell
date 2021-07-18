@@ -1,5 +1,5 @@
 # hanzi_spell 一个简单的汉字拼音拼写组合js库 (A simple hanzi pinyin, animation and test js lib)
-集成汉字拼音、拼写动画、拼写练习 (Integrate hanzi pinyin, animation and test together)
+集成汉字拼音、拼写动画、拼写练习 (Integrate hanzi pinyin, animation and test together) <br>
 来源 (based on): https://github.com/theajack/cnchar
 
 ## 示例 (Example)
