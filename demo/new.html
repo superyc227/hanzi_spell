@@ -1,0 +1,83 @@
+<html lang="zh-cn">
+	<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="小学语文生字拼写"/>
+    <meta name="keywords" content="小学 语文 生字 拼写 中文"/>
+    <title>小学语文生字拼写</title>     
+    <script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cnchar-draw/cnchar.draw.min.js"></script>
+    <script src="data/data.js"></script>    
+    <script src="js/hanzi.js"></script>
+		<script src="js/utils.js"></script>
+  </head>
+<body onload="load()"> 
+<div id='data' style='position:relative;'></div>
+<div id='draw-area' style='position:relative;'></div>
+<script>
+    function load()
+    {
+     	var dict = {
+			  "1": "一年级上册生字",
+			  "2": "一年级下册生字",
+			  "3": "二年级上册生字",
+			  "4": "二年级下册生字",
+			  "5": "三年级上册生字",
+			  "6": "三年级下册生字",
+			  "7": "四年级上册生字",
+			  "8": "四年级下册生字",
+			  "9": "五年级上册生字",
+			  "10": "五年级下册生字",
+			  "11": "六年级上册生字",
+			  "12": "六年级下册生字"
+			};
+      var mydata = JSON.parse(data);        
+
+      var div = document.getElementById('data');
+      
+      var strHtml = "";
+      
+      var selectedGrade = getQueryVariable("grade")
+      if (selectedGrade)
+      {
+      	strHtml = strHtml + '<p id='+selectedGrade+
+      	'> <strong><a href="new.html"> << </a>'+
+      	dict[selectedGrade] +'</strong></p>';
+      	div.innerHTML = strHtml;    
+      	var lines = mydata[selectedGrade];
+      	
+        var drawArea = document.getElementById('draw-area');
+        drawArea.innerHTML="";        
+        drawArea.appendChild(createString(lines)); 
+      }        
+      else
+      {
+        for(var grade in mydata)
+        {        	
+            strHtml = strHtml + 
+            '<p id='+grade+'> <a href="new.html?grade=' +grade+ 
+            '"><strong>'+ dict[grade] +'</strong></a></p>';
+            /*var lines = mydata[grade]
+            
+            for (var i = 0; i < lines.length; i++)
+            {
+            	lineData = lines[i]
+            	lineNr = i + 1
+            	strHtml = strHtml + "<p>"+ lineNr + ". " 
+            	for (var j = 0; j < lineData.length; j++)
+            	{
+            		ch = lineData[j] 
+            	  strHtml = strHtml + ch["hanzi"] + '('+ ch["pinyin"] + ') ';
+            	}
+            	strHtml = strHtml + "</p>"            	     	 
+            }*/            
+        }        
+        div.innerHTML = strHtml
+      }
+    } 
+</script>
+
+</body> 
+</html>

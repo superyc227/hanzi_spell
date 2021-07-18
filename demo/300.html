@@ -1,0 +1,91 @@
+<html lang="zh-cn">
+	<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="唐诗300首拼写"/>
+    <meta name="keywords" content="唐诗 300首 拼写 中文"/>
+    <title>唐诗300首拼写</title>     
+    <script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cnchar-draw/cnchar.draw.min.js"></script>
+    <script src="data/300.js"></script>    
+    <script src="js/hanzi.js"></script>
+		<script src="js/utils.js"></script>
+  </head>
+<body onload="load()"> 
+<div id='data' style='position:relative;'></div>
+<div id='draw-area' style='position:relative;'></div>
+<script>
+	
+	function convertToLine(data)
+	{
+		var line = [];
+	  for (var i = 0; i < data.length; i++)
+	  {
+	  	var ch = data.charAt(i);
+	  	var chData = {}
+	  	chData["hanzi"] = ch;
+	  	chData["pinyin"] = ch.spell('tone','low');
+	  	 	
+	  	line.push(chData);
+	  }
+	  return line;
+	}
+	  function convertToLines(author, title, contents)
+	  {
+	  	var lines = [];
+	  	lines.push(convertToLine(title));
+	  	lines.push(convertToLine(author));	  	
+	  	
+	  	var contentLines = contents.split(new RegExp("[。？]"));
+	  	for (var i = 0; i < contentLines.length; i++)
+	  	{
+	  		var contentLine = contentLines[i];
+	  		contentLine = contentLine.replace(" ", "");
+	  		lines.push(convertToLine(contentLine));	  		
+	  	}
+	  	
+	  	return lines;
+	  }
+    function load()
+    {     	
+      var mydata = JSON.parse(data);        
+
+      var div = document.getElementById('data');
+      
+      var strHtml = "";
+      
+      var selectedPoem = getQueryVariable("id");
+      if (selectedPoem)
+      {
+      	var poem = mydata[selectedPoem - 1];
+      	strHtml = strHtml + '<p id='+selectedPoem+'> <strong><a href="300.html"> << </a>'+
+      	poem.author + ' - ' + poem.title + '</strong></p>';
+      	div.innerHTML = strHtml;    
+      	var lines = convertToLines(poem.author, poem.title, poem.contents);
+      	
+        var drawArea = document.getElementById('draw-area');
+        drawArea.innerHTML="";        
+        drawArea.appendChild(createString(lines)); 
+      }        
+      else
+      {
+        for(var i = 0; i < mydata.length; i++)
+        {        	
+        	var poem = mydata[i];
+            strHtml = strHtml + 
+            '<p id='+poem.id+
+            '> <a href="300.html?id=' +
+            poem.id + 
+            '">'+ poem.id +'. [' + poem.type + '] <strong>'+ 
+            poem.author +' - ' + poem.title +'</strong></a></p>';           
+            
+        }        
+        div.innerHTML = strHtml
+      }
+    } 
+</script>
+
+</body> 
+</html>
