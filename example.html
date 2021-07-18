@@ -1,0 +1,62 @@
+<html lang="zh-cn">
+	<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="拼写例子"/>
+    <meta name="keywords" content="拼写 中文 例子 example"/>
+    <title>拼写例子</title>     
+    <script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cnchar-draw/cnchar.draw.min.js"></script>
+    <script src="js/hanzi.js"></script>		
+  </head>
+<body onload="load()"> 
+<div id='data' style='position:relative;'></div>
+<div id='draw-area' style='position:relative;'></div>
+<script>
+	
+	function convertToLine(data)
+	{
+		var line = [];
+	  for (var i = 0; i < data.length; i++)
+	  {
+	  	var ch = data.charAt(i);
+	  	var chData = {}
+	  	chData["hanzi"] = ch;
+	  	chData["pinyin"] = ch.spell('tone','low');
+	  	 	
+	  	line.push(chData);
+	  }
+	  return line;
+	}
+  function convertToLines(contents)
+  {
+  	var lines = [];	  	
+  	
+  	var contentLines = contents.split("。");
+  	for (var i = 0; i < contentLines.length; i++)
+  	{
+  		var contentLine = contentLines[i];
+  		contentLine = contentLine.replace(" ", "");
+  		lines.push(convertToLine(contentLine));	  		
+  	}
+  	
+  	return lines;
+  }
+  function load()
+  { 
+    var div = document.getElementById('data');
+    div.innerHTML = "<b>拼写例子<br><br>";      
+     
+  	var lines = convertToLines("拼写例子。好好学习,天天向上");
+  	
+    var drawArea = document.getElementById('draw-area');
+    drawArea.innerHTML="";
+    
+    drawArea.appendChild(createString(lines));       
+  } 
+</script>
+
+</body> 
+</html>
