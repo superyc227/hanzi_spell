@@ -10,5 +10,5 @@
 2. 双击测试汉字框将重新测试 (Double click hanzi test box will restart test)
 
 ## Demo
-1. 小学语文生字 (New hanzi learned in Chinese primary school ) demo/new.html
-2. 唐诗300首 (Tang poems 300) demo/300.html
+1. 小学语文生字 (New hanzi learned in Chinese primary school ) [demo/new.html](https://worldstarter.000webhostapp.com/demo/new.html)
+2. 唐诗300首 (Tang poems 300) [demo/300.html](https://worldstarter.000webhostapp.com/demo/300.html)
